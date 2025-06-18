@@ -2,7 +2,10 @@ from flask import Flask, request, jsonify
 import uuid
 from util import read_notes, write_notes
 
+
 app = Flask(__name__)
+
+
 
 @app.route('/api/notes', methods=['GET'])
 def get_notes():
