@@ -18,9 +18,10 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Install deps + run tests
+    - name: Install dependencies & Run tests
       run: |
         pip install -r requirements.txt
+        pip install pytest flake8  # <- ensure they're available
         pytest
         flake8 app.py
 
