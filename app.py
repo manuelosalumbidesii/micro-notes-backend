@@ -6,11 +6,11 @@ from util import read_notes, write_notes
 app = Flask(__name__)
 
 
-
 @app.route('/api/notes', methods=['GET'])
 def get_notes():
     notes = read_notes()
     return jsonify(notes), 200
+
 
 @app.route('/api/notes/<note_id>', methods=['GET'])
 def get_note(note_id):
@@ -19,6 +19,7 @@ def get_note(note_id):
     if note:
         return jsonify(note), 200
     return jsonify({'error': 'Note not found'}), 404
+
 
 @app.route('/api/notes', methods=['POST'])
 def add_note():
@@ -33,6 +34,7 @@ def add_note():
     write_notes(notes)
     return jsonify(new_note), 201
 
+
 @app.route('/api/notes/<note_id>', methods=['DELETE'])
 def delete_note(note_id):
     notes = read_notes()
@@ -41,6 +43,7 @@ def delete_note(note_id):
         return jsonify({'error': 'Note not found'}), 404
     write_notes(new_notes)
     return jsonify({'message': 'Note deleted'}), 200
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
