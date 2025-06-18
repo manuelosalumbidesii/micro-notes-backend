@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS  # Import CORS
 import uuid
 from util import read_notes, write_notes
 
