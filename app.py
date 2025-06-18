@@ -24,15 +24,19 @@ def get_note(note_id):
 @app.route('/api/notes', methods=['POST'])
 def add_note():
     data = request.get_json(force=True)
+    if not data or not data.get('title') or not data.get('content'):
+        return jsonify({'error': 'Invalid input'}), 400
+
     new_note = {
         'id': str(uuid.uuid4()),
-        'title': data.get('title'),
-        'content': data.get('content')
+        'title': data['title'],
+        'content': data['content']
     }
     notes = read_notes()
     notes.append(new_note)
     write_notes(notes)
     return jsonify(new_note), 201
+
 
 
 @app.route('/api/notes/<note_id>', methods=['DELETE'])
