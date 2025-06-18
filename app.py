@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 import uuid
 from util import read_notes, write_notes
 
-
 app = Flask(__name__)
 
 
@@ -38,7 +37,6 @@ def add_note():
     return jsonify(new_note), 201
 
 
-
 @app.route('/api/notes/<note_id>', methods=['DELETE'])
 def delete_note(note_id):
     notes = read_notes()
@@ -51,3 +49,4 @@ def delete_note(note_id):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
